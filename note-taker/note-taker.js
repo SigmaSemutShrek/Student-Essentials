@@ -57,7 +57,7 @@ async function submitGoal() {
 
     // Input validation (your existing code, adding 'return' statements for early exit)
     if (goalInpEl.value === "") {
-        goalInpEl.placeholder = "Please enter a goal";
+        goalInpEl.placeholder = "Please enter a note";
         goalInpEl.style.border = "2px solid red";
         goalInpEl.style.outline = "2px solid red";
         setTimeout(() => {
@@ -68,7 +68,7 @@ async function submitGoal() {
         return; // Stop execution
     }
     if (goalInpEl.value.length >= 30) {
-        goalInpEl.value = "Maximum characters for the goal is 30 words";
+        goalInpEl.value = "Maximum characters for the notes is 30 words";
         goalInpEl.style.border = "2px solid red";
         goalInpEl.style.outline = "2px solid red";
         setTimeout(() => {
@@ -93,7 +93,7 @@ async function submitGoal() {
 
     // <--- CRUCIAL CHANGE: Check if a user is authenticated using `currentUserId`
     if (!currentUserId) {
-        alert("You must be logged in to add a goal.");
+        alert("You must be logged in to add a note.");
         window.location.href = "../authentication/login.html"; // Redirect to login
         return; // Stop the function
     }
@@ -155,7 +155,7 @@ async function submitGoal() {
         addGoalEl(goal, goalDescription, newGoalDocId);
         notifyEmptyGoal(); // Update notification after adding a goal
     } catch (e) {
-        alert("Oops! There was an error adding your goal. Please try again.");
+        alert("Oops! There was an error adding your note. Please try again.");
     }
 }
 
@@ -201,7 +201,7 @@ async function deleteGoal(docId, goalElementToRemove) {
 
     if (
         !confirm(
-            `Are you sure you have completed this goal? This action cannot be undone.`
+            `Are you sure you have completed this note? This action cannot be undone.`
         )
     ) {
         return;
@@ -244,7 +244,7 @@ async function deleteGoal(docId, goalElementToRemove) {
             console.warn("Could not find goal element to remove from UI.");
         }
     } catch (error) {
-        alert("There was an error deleting your goal. Please try again.");
+        alert("There was an error deleting your note. Please try again.");
     }
 }
 
@@ -252,7 +252,7 @@ function notifyEmptyGoal() {
     // Check the actual number of goals in the container
     if (goalContainerEl.children.length === 0) {
         notificationEl.innerText =
-            "There are no goals. Click the button below to add some goals.";
+            "There are no goals. Click the button below to add some notes.";
         notificationEl.style.display = "block";
     } else {
         notificationEl.style.display = "none";
